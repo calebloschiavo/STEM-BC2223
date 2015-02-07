@@ -1,0 +1,86 @@
+//SET VARIABLES
+ PFont f;                   //font
+ 
+ int centerX;
+ int centerY;
+ int squareLeftX;
+ int squareRightX;
+ int trialNumber;
+ 
+ color c1 = 128;
+
+
+//SETUP FRAME
+void setup() {
+  size(640, 480);
+  centerX = width/2;
+  centerY = height/2;
+  squareLeftX = centerX - 130;
+  squareRightX = centerX + 130;
+  trialNumber = 1;
+  c1 = color(128);
+}
+
+  
+//BASE DRAWING SETUP
+void draw() {
+  background(255);
+  rectMode(CENTER);
+  stroke(0);
+  fill(255);
+  rect(squareLeftX, centerY, 60, 60);
+  rect(squareRightX, centerY, 60, 60);
+  line(centerX - 20, centerY, centerX + 20, centerY);
+  line(centerX, centerY - 20, centerX, centerY + 20);
+   
+  //*
+  f = createFont("Arial", 24);
+  textFont(f);
+  fill(0);
+  textAlign(LEFT, CENTER);
+  text("Trial Number "+trialNumber+":", 15, 25);
+  //*/
+  
+  if (mousePressed == true) {
+    stroke(c1);
+    fill(c1);
+    rect(squareRightX, centerY, 30, 30);
+  }
+}
+
+//PRESSING MOUSE APPEARS GREY SQUARE
+/*
+void mousePressed () {
+  stroke(c1);
+  fill(c1);
+  rect(squareRightX, centerY, 30, 30);
+}
+*/
+
+
+void keyPressed () {
+//PRESSING S MOVES SQUARES APART
+  if (key == 's' || key == 'S') {
+    squareLeftX = squareLeftX - 1;
+    squareRightX = squareRightX + 1;
+  }
+
+//PRESSING A MOVES SQUARES CLOSER
+  if (key == 'a' || key == 'A') {
+    squareLeftX = squareLeftX + 1;
+    squareRightX = squareRightX - 1;
+  }
+
+//PRESSING Y INCREASES TRIAL NUMBER BY ONE
+  if (key == 'y' || key == 'Y') {
+    trialNumber = trialNumber + 1;
+  }  
+
+
+//PRESSING Q RESETS
+  if (key == 'q' || key == 'Q') {
+    squareLeftX = centerX - 130;
+    squareRightX = centerX + 130;
+    trialNumber = 1; 
+  }
+}
